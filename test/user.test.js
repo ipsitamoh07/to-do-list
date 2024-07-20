@@ -1,8 +1,7 @@
-// test/user.test.js
 const request = require('supertest');
-const { app, server } = require('../src/server');
 const mongoose = require('mongoose');
 const User = require('../src/models/User');
+const { app, server } = require('../src/server');
 
 let token;
 
@@ -16,6 +15,10 @@ beforeAll(async () => {
 afterAll(async () => {
   await mongoose.connection.close();
   server.close();
+});
+
+beforeEach(async () => {
+  await User.deleteMany({});
 });
 
 describe('User Authentication', () => {
@@ -33,10 +36,12 @@ describe('User Authentication', () => {
   });
 
   it('should login and return a JWT token', async () => {
-    await request(app).post('/api/users/register').send({
-      username: 'testuser',
-      password: 'password123',
-    });
+    await request(app)
+      .post('/api/users/register')
+      .send({
+        username: 'testuser',
+        password: 'password123',
+      });
 
     const response = await request(app)
       .post('/api/users/login')

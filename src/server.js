@@ -5,7 +5,7 @@ require('dotenv').config();
 const userRoutes = require('./routes/userRoutes');
 const todoRoutes = require('./routes/todoRoutes');
 const setupSwagger = require('./swagger');
-const { verifyToken } = require('./middleware/auth'); // Include the auth middleware
+const { verifyToken } = require('./middleware/auth'); 
 const authorizeRole = require('./middleware/authorizeRole');
 
 const app = express();
@@ -15,10 +15,8 @@ const MONGO_URI = process.env.MONGO_URI;
 console.log(`MongoDB URI: ${MONGO_URI}`);
 console.log(`Port: ${PORT}`);
 
-// Middleware
 app.use(express.json());
 
-// Swagger API documentation setup
 setupSwagger(app);
 
 // Routes
@@ -42,5 +40,5 @@ const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// Export app, server, and connectDb
+// Export app, server
 module.exports = { app, server };

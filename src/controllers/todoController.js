@@ -11,7 +11,7 @@ const createTodo = async (data) => {
     title: data.title,
     description: data.description,
     status: data.status,
-    userId: data.userId, // Associate todo with the user
+    userId: data.userId, 
   });
   return await newTodo.save();
 };

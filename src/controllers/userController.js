@@ -1,6 +1,6 @@
 const User = require('../models/User');
-const jwt = require('jsonwebtoken'); // Import jsonwebtoken for token handling
-const bcrypt = require('bcryptjs'); // Import bcrypt for password hashing
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 // Register a new user
 const registerUser = async (req, res) => {
@@ -17,9 +17,9 @@ const registerUser = async (req, res) => {
 
     const newUser = new User({ username, password: hashedPassword });
     await newUser.save();
-    res.status(201).json({ message: 'User registered successfully' });
+    return res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -43,7 +43,7 @@ const loginUser = async (req, res) => {
     const token = jwt.sign({ id: user._id, role: user.role || 'user' }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 
