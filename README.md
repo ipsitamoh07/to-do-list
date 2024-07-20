@@ -1,4 +1,4 @@
-  <h1>ToDo App API</h1>
+  <h1>To-Do App API</h1>
   <p>This is a Node.js based API for a ToDo application. It supports user registration, login, and CRUD operations on todo items.</p>
 
   <h2>Table of Contents</h2>
