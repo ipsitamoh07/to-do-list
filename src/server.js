@@ -35,7 +35,7 @@ mongoose.connect(MONGO_URI, {
   console.error('Error connecting to MongoDB:', error.message);
 });
 
-// Start server
+//Start server
 const server = app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
